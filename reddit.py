@@ -4,7 +4,7 @@ from collections import Counter
 import matplotlib.pyplot as plt
 
 #Constants
-COMMENT_LIMIT = 10
+COMMENT_LIMIT = 5
 WORD_LIMIT = 10
 
 #Globals
@@ -27,13 +27,12 @@ def enterUser():
 
 def get_word_count(user):
 
-	com = user.get_comments(limit=COMMENT_LIMIT, sort='new', time='all')
+	com = user.get_comments(limit=COMMENT_LIMIT, sort='new')
 	com = '[%s]' % ','.join(map(str,com))
-	words = re.findall(r'\w+', com)
 
 	word_counter = 0
 	while word_counter < WORD_LIMIT:
-
+		words = re.findall(r'\w+', com)
 		for word in words: 
 			word_count = Counter(words)
 		word_counter += 1	
